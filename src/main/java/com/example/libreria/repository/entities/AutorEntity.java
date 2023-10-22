@@ -3,9 +3,7 @@ package com.example.libreria.repository.entities;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +21,8 @@ public class AutorEntity {
     private Long id;
     private String nombres;
     private String apellidos;
+    private String pais;
     private String fechaNacimiento;
-    @OneToMany(mappedBy = "autor",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany()
     private List<LibroEntity> libros;
 }
