@@ -21,8 +21,7 @@ public class AutorServiceImpl implements AutorService{
     }
 
     @Override
-    public List<AutorEntity> getAll() {
-        List<AutorEntity> autores = (List<AutorEntity>) autorRepository.findAll();
-        return autores;
+    public List<AutorEntity> findAll() {
+        return (List<AutorEntity>) autorRepository.findAll();
     }
 }

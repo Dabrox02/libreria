@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name ="libros")
+@Table(name = "libros")
 public class LibroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,9 @@ public class LibroEntity {
     private String titulo;
     private String descripcion;
     private double precio;
-    @ManyToOne()
-    @JoinColumn(name="autor_id")
-    @JsonIgnoreProperties("autor")
-    private AutorEntity autor;
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
+    @JsonIgnoreProperties(value = { "libros", "hibernateLazyInitializer" })
+    private AutorEntity autor_libro;
 }
+

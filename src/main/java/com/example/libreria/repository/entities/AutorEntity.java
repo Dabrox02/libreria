@@ -1,9 +1,14 @@
 package com.example.libreria.repository.entities;
 
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,9 +18,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="autor")
-public class AutorEntity {
-    
+@Table(name="autores")
+public class AutorEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +27,7 @@ public class AutorEntity {
     private String apellidos;
     private String pais;
     private String fechaNacimiento;
-    @OneToMany()
+    @OneToMany(mappedBy = "autor_libro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("autor_libro")
     private List<LibroEntity> libros;
 }
